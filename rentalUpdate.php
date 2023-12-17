@@ -26,12 +26,6 @@ if(isset($_POST['submit'])){
 
 	$rental_time = $rental_start_day->diff($rental_end_day);
 
-	if ($rental_time->days >= 7) {
-    $rental_fee = (ceil($rental_time->days / 7) * 10) + $damage + $fine;
-  } else {
-      $rental_fee = (($rental_time->days * 24 + $rental_time->h) * 3) + $damage + $fine;
-  }
-
 	if(empty($_POST["name"]) OR (empty($_POST["matricNo"])) OR (empty($_POST["phoneNo"])) OR (empty($_POST["rental_start_day"])) OR (empty($_POST["rental_end_day"])) OR (empty($_POST["bicycle_id"]))) {
 		echo "<script>alert('one or more fields are empty');</script>";
 	} else {
@@ -65,7 +59,12 @@ if(isset($_POST['submit'])){
         // Update the selected bicycle status to 0
         $updateSelectedBicycle = $conn->prepare("UPDATE bicycle SET status = 0 WHERE id = :newBicycleID");
         $updateSelectedBicycle->execute([':newBicycleID' => $newBicycleID]);
-
+        
+        if ($rental_time->days >= 7) {
+          $rental_fee = (ceil($rental_time->days / 7) * 10) + $damage + $fine;
+        } else {
+            $rental_fee = (($rental_time->days * 24 + $rental_time->h) * 3) + $damage + $fine;
+        }
         
         $update = $conn->prepare("UPDATE rental_info SET name=:name, matric_no=:matricNo, phoneNo=:phoneNo, damage=:damage, fine=:fine, rental_start_day=:rental_start_day, rental_end_day=:rental_end_day, rental_fee=:rental_fee, bicycle_id=:bicycle_id, updated_by_employee=:updated_by_employee, updated_by_admin=:updated_by_admin WHERE id = :id");
 		$update->execute([
@@ -87,14 +86,14 @@ if(isset($_POST['submit'])){
         } else {
             $_SESSION['error_update_message'] = "Error occurred while updating the record.";
         }
-        header('Location:./customerList.php');
+        header('Location:./rentalList.php');
         exit();
 		}	
 	}
 ?>
 
-<div class="back" style="padding-top:80px">
-  <a href="customerList.php"><i class="fa-solid fa-angle-left"></i>Back</a>
+<div class="back" style="padding-top:60px">
+  <a href="rentalList.php"><i class="fa-solid fa-angle-left"></i>Back</a>
 </div>
 <div class="container-fluid">
   <div class="row justify-content-center p-5 pt-1">
@@ -104,7 +103,7 @@ if(isset($_POST['submit'])){
           <div class="row justify-content-center">
             <!-- <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1"> -->
               <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Update Rental Info</p>
-              <form action="customerUpdate.php?id=<?php echo $id; ?>" class="px-5" method="POST">
+              <form action="rentalUpdate.php?id=<?php echo $id; ?>" class="px-5" method="POST">
                 <div class="d-flex flex-row align-items-center mb-4">
                   <i class="fas fa-tag fa-lg me-3 fa-fw"></i>
                   <div class="form-outline flex-fill mb-0">

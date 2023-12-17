@@ -50,13 +50,13 @@ if (isset($_SESSION['error_delete_message'])) {
         <div class="col mt-5">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title mb-4 d-inline fw-bold">Customer List</h3>
+              <h3 class="card-title mb-4 d-inline fw-bold">Rental List</h3>
 				<!-- <form action="customerSearch.php" method="GET">
 					<input type="text" name="query" placeholder="Search..." />
 					<button type="submit">Search</button>
 				</form> -->
 			  <br>
-             	<a  href="customerInsert.php" class="btn btn-success ms-3 mt-4 p-2 px-4 text-center float-right">Create</a>
+             	<a  href="rentalInsert.php" class="btn btn-success ms-3 mt-4 p-2 px-4 text-center float-right">Create</a>
               <table class="table table-striped ms-auto">
                 <thead>
                   <tr>
@@ -89,8 +89,8 @@ if (isset($_SESSION['error_delete_message'])) {
                     <td><?php echo $customer->rental_fee; ?></td>
                     <td><?php echo $customer->rental_start_day; ?></td>
                     <td><?php echo $customer->rental_end_day; ?></td>
-                    <td><a  href="customerUpdate.php?id=<?php echo $customer->id; ?>" class="btn btn-warning text-white text-center ">Update </a></td>
-                    <td><a href="customerDelete.php?id=<?php echo $customer->id; ?>" class="btn btn-danger  text-center ">Delete </a></td>
+                    <td><a  href="rentalUpdate.php?id=<?php echo $customer->id; ?>" class="btn btn-warning text-white text-center ">Update </a></td>
+                    <td><a href="rentalDelete.php?id=<?php echo $customer->id; ?>" class="btn btn-danger  text-center ">Delete </a></td>
                 </tr>
 				<?php endforeach; ?>
                 </tbody>

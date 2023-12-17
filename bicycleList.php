@@ -46,7 +46,7 @@ if (isset($_SESSION['error_delete_message'])) {
 ?>
 
 <div class="container-fluid">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-5">
         <div class="col mt-5">
           <div class="card">
             <div class="card-body">
@@ -60,17 +60,21 @@ if (isset($_SESSION['error_delete_message'])) {
               <table class="table table-striped ms-auto">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">id</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col" class="fw-bold">#</th>
+                    <th scope="col" class="fw-bold">id</th>
+                    <th scope="col" class="fw-bold">Type</th>
+                    <th scope="col" class="fw-bold">Status</th>
+                    <th scope="col" class="fw-bold">Price</th>
+                    <th scope="col" class="fw-bold">Update</th>
+                    <th scope="col" class="fw-bold">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
-
+                <?php if (empty($allBicycles)): ?>
+                <tr>
+                  <td colspan="7">No data found.</td>
+                </tr>
+              <?php else: ?>
 								<?php $rowNumber = 1; ?>
 								<?php foreach($allBicycles as $bicycle) : ?>
 										<tr>
@@ -83,6 +87,7 @@ if (isset($_SESSION['error_delete_message'])) {
                     <td><a href="bicycleDelete.php?id=<?php echo $bicycle->id; ?>" class="btn btn-danger  text-center ">Delete </a></td>
                   </tr>
 								<?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
             </table> 
           </div>

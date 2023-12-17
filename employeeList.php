@@ -46,7 +46,7 @@ if (isset($_SESSION['error_delete_message'])) {
 ?>
 
 <div class="container-fluid">
-    <div class="row mt-5">
+    <div class="row mt-5 mb-5">
         <div class="col mt-5">
           <div class="card">
             <div class="card-body">
@@ -55,19 +55,23 @@ if (isset($_SESSION['error_delete_message'])) {
               <table class="table table-striped ms-auto">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Id</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Phone No.</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Remark</th>
-                    <th scope="col">Update</th>
-                    <th scope="col">Delete</th>
+                    <th scope="col" class="fw-bold">#</th>
+                    <th scope="col" class="fw-bold">Id</th>
+                    <th scope="col" class="fw-bold">Username</th>
+                    <th scope="col" class="fw-bold">Name</th>
+                    <th scope="col" class="fw-bold">Phone No.</th>
+                    <th scope="col" class="fw-bold">Email</th>
+                    <th scope="col" class="fw-bold">Remark</th>
+                    <th scope="col" class="fw-bold">Update</th>
+                    <th scope="col" class="fw-bold">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
-
+                <?php if (empty($allUsers)): ?>
+                  <tr>
+                    <td colspan="9">No data found.</td>
+                  </tr>
+                <?php else: ?>
                 <?php $rowNumber = 1; ?>
 									<?php foreach($allUsers as $user) : ?>
                   <tr>
@@ -82,6 +86,7 @@ if (isset($_SESSION['error_delete_message'])) {
                     <td><a href="employeeDelete.php?id=<?php echo $user->id; ?>" class="btn btn-danger  text-center ">Delete </a></td>
                   </tr>
 									<?php endforeach; ?>
+                  <?php endif; ?>
                 </tbody>
             </table> 
           </div>

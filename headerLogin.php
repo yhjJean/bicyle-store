@@ -18,7 +18,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg bg-black fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="login.php">The Right Bike Store</a>
   </div>

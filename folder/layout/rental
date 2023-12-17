@@ -1,0 +1,4 @@
+[Column(TypeName = "date")]
+        [DisplayName("Rental End Date")]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}")]
+        public DateTime RentalEndDay { get; set; }

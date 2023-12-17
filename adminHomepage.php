@@ -27,7 +27,7 @@ if (isset($_SESSION['user_id'])) {
   $isEmployee = false;
 }
 ?>
-?>
+
 
 <div class="row" style="padding-top:100px;">
   <div class="col-sm-6">
@@ -41,8 +41,8 @@ if (isset($_SESSION['user_id'])) {
   <div class="col-sm-6">
     <div class="card" style="background-color: #FFFB8F; margin-left: 30px;margin-right:30px;">
       <div class="card-body px-5">
-        <h5 class="card-title fw-bold"><i class="fas fa-users me-4 fa-lg"></i>Customer</h5>
-        <a href="customerList.php" class="btn btn-primary px-5 py-3 float-end">Manage</a>
+        <h5 class="card-title fw-bold"><i class="fas fa-users me-4 fa-lg"></i>Rental</h5>
+        <a href="rentalList.php" class="btn btn-primary px-5 py-3 float-end">Manage</a>
       </div>
     </div>
   </div>

@@ -42,7 +42,8 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-<div class="back">
+<div class="back mt-5">
+  <br>
   <a href="bicycleList.php"><i class="fa-solid fa-angle-left"></i>Back</a>
 </div>
 <div class="container-fluid">

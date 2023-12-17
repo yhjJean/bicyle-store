@@ -46,6 +46,10 @@ $stmt->execute([
 // Fetch the sales data
 $salesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Check if no data is found
+if (empty($salesData)) {
+    $noDataMessage = "No data found.";
+}
 ?>
 
 <div class="container-fluid">
@@ -53,7 +57,7 @@ $salesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="col mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title mb-4 d-inline fw-bold">Sales Report (DAILY SALES REPORT)</h3>
+                    <h3 class="card-title mb-4 d-inline fw-bold">Sales Report (Daily)</h3>
                     <form action="" method="GET">
                         <div class="mb-3">
                             <label for="year" class="form-label">Year:</label>
@@ -74,14 +78,19 @@ $salesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Number of Sales</th>
-                                    <th>Created By</th>
-                                    <th>Role</th>
-                                    <th>Total Sales (RM)</th>
+                                    <th class="fw-bold">Date</th>
+                                    <th class="fw-bold">Number of Sales</th>
+                                    <th class="fw-bold">Created By</th>
+                                    <th class="fw-bold">Role</th>
+                                    <th class="fw-bold">Total Sales (RM)</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php if (isset($noDataMessage)): ?>
+                                    <tr>
+                                        <td colspan="5"><?php echo $noDataMessage; ?></td>
+                                    </tr>
+                                <?php else: ?>
                                 <?php foreach ($salesData as $data): ?>
                                     <tr>
                                         <td><?php echo $data['sales_date']; ?></td>
@@ -91,6 +100,7 @@ $salesData = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         <td><?php echo $data['total_sales']; ?></td>
                                     </tr>
                                 <?php endforeach; ?>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>

@@ -31,8 +31,8 @@ if(isset($_POST['submit'])){
 		} else if($emailDuplicate) {
 			echo "<script>alert('Email is already taken. Please use another email.');</script>";
 		} else {
-				$insert = $conn->prepare("INSERT INTO employee(username, password, name, phoneNo, email, remark, created_by_admin, created_by_employee)
-				VALUES(:username, :password, :name, :phoneNo, :email, :remark, :created_by_admin, :created_by_employee)");
+				$insert = $conn->prepare("INSERT INTO employee(username, password, name, phoneNo, email, remark, created_by_admin)
+				VALUES(:username, :password, :name, :phoneNo, :email, :remark, :created_by_admin)");
 
 				$insert->execute([
 					":username" => $username,
@@ -42,7 +42,6 @@ if(isset($_POST['submit'])){
 					":email" => $email,
 					":remark" => $remark,
           ':created_by_admin' => $currentAdminID,
-          ':created_by_employee' => $currentUserID
 				]);
         if ($insert->rowCount() > 0) {
           $_SESSION['success_insert_message'] = "New record successfully inserted!";
@@ -56,10 +55,11 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-<div class="back">
+<div class="back mt-5">
+  <br>
   <a href="employeeList.php"><i class="fa-solid fa-angle-left"></i>Back</a>
 </div>
-<div class="container-fluid">
+<div class="container-fluid mb-5">
   <div class="row justify-content-center">
     <div class="col-lg-6">
       <div class="card text-black" style="border-radius: 25px;">

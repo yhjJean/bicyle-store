@@ -61,10 +61,11 @@ if(isset($_POST['submit'])){
 }
 ?>
 
-<div class="back">
+<div class="back mt-5">
+  <br>
   <a href="employeeList.php"><i class="fa-solid fa-angle-left"></i>Back</a>
 </div>
-<div class="container-fluid">
+<div class="container-fluid mb-5">
   <div class="row justify-content-center">
     <div class="col-lg-6">
       <div class="card text-black" style="border-radius: 25px;">
